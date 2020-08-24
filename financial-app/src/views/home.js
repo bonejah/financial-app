@@ -1,43 +1,45 @@
 import React from "react";
 
-import UsuarioService from "../services/usuarioService";
+import UserService from "../services/userService";
 import { AuthContext } from "../main/providerAuthentication"
+import { errorMessage } from "../components/toastr"
 
 class Home extends React.Component {
+
   constructor() {
     super();
-    this.usuarioService = new UsuarioService();
+    this.service = new UserService();
   }
 
   state = {
-    saldo: 0
+    balance: 0
   }
 
   componentDidMount() {
-    const usuarioLogado = this.context.userAuthenticated;
+    const userLogged = this.context.userAuthenticated;
     
-    this.usuarioService.obterSaldoPorUsuario(usuarioLogado.id)
+    this.service.getBalanceById(userLogged.id)
       .then(response => {
-        this.setState({saldo: response.data});
+        this.setState({balance: response.data});
       }).catch(error => {
-        console.error(error.response);
+        errorMessage(error.response.data);
       });
   }
 
   render() {
     return (
       <div className="jumbotron">
-        <h1 className="display-3">Bem vindo!</h1>
-        <p className="lead">Esse é seu sistema de finanças.</p>
-        <p className="lead">Seu saldo para o mês atual é de R$ {this.state.saldo}</p>
+        <h1 className="display-3">Welcome!</h1>
+        <p className="lead">This is your finance system.</p>
+        <p className="lead">Your balance for the current month is R $ {this.state.balance}</p>
         <hr className="my-4" />
-        <p>E essa é sua área administrativa, utilize um dos menus ou botões abaixo para navegar pelo sistema.</p>
+        <p>This is your administrative area, use one of the menus or buttons below to browse the system.</p>
         <p className="lead">
-          <a className="btn btn-primary btn-lg" href="#/cadastro-usuario" role="button">
-            <i className="pi pi-users"></i>Cadastrar Usuário
+          <a className="btn btn-primary btn-lg" href="#/register-user" role="button">
+            <i className="pi pi-users"></i>Register User
           </a>
-          <a className="btn btn-danger btn-lg" href="#/cadastro-lancamento" role="button">
-            <i className="pi pi-money-bill"></i>Cadastrar Lançamento
+          <a className="btn btn-danger btn-lg" href="#/register-balance" role="button">
+            <i className="pi pi-money-bill"></i>Register Balance
           </a>
         </p>
       </div>

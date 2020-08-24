@@ -5,36 +5,36 @@ import Card from "./../components/cards";
 import FormGroup from "../components/form-group";
 import { errorMessage} from "../components/toastr";
 
-import UsuarioService from "../services/usuarioService";
+import UserService from "../services/userService";
 
 import { AuthContext } from "../main/providerAuthentication";
  
 class Login extends React.Component {
+
   constructor(){
     super();
-    this.service = new UsuarioService();
+    this.service = new UserService();
   }
 
   state = {
     email: "",
-    senha: ""
+    password: ""
   };
 
-
-  entrar = () => {
-    this.service.autenticar({
+  signin = () => {
+    this.service.authenticate({
       email: this.state.email,
-      senha: this.state.senha
+      password: this.state.password
     }).then(response => {
       this.context.beginSession(response.data);
-      this.props.history.push("/home")
-    }).catch(erro => {
-      errorMessage(erro.response.data);
-    });
+      this.props.history.push("/home");
+    }).catch(error => {
+      errorMessage(error.response.data);
+    })
   };
 
-  prepareCadastrar = () => {
-    this.props.history.push("/cadastro-usuario");
+  registerUser = () => {
+    this.props.history.push("/register-user");
   }
 
   render() {
@@ -48,19 +48,19 @@ class Login extends React.Component {
                   <div className="bs-component">
                     <form>
                       <fieldset>
-                        <FormGroup label="Email: *" htmlFor="exampleInputEmail1">
+                        <FormGroup label="Email: *" htmlFor="inputEmail">
                           <input type="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })}
-                            className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"placeholder="Digite o Email"/>
+                            className="form-control" id="inputEmail" aria-describedby="emailHelp"placeholder="Enter email"/>
                         </FormGroup>
-                        <FormGroup label="Senha: *" htmlFor="exampleInputPassword1">
-                          <input type="password" value={this.state.senha} onChange={(e) => this.setState({ senha: e.target.value })}
-                            className="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                        <FormGroup label="Password: *" htmlFor="inputPassword">
+                          <input type="password" value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })}
+                            className="form-control" id="inputPassword" placeholder="Enter password"/>
                         </FormGroup>
-                        <button onClick={this.entrar} className="btn btn-success">
-                          <i className="pi pi-sign-in"></i>Entrar
+                        <button onClick={this.signin} className="btn btn-success">
+                          <i className="pi pi-sign-in"></i>Sign In
                         </button>
-                        <button onClick={this.prepareCadastrar} className="btn btn-danger">
-                          <i className="pi pi-plus"></i>Cadastrar
+                        <button onClick={this.registerUser} className="btn btn-danger">
+                          <i className="pi pi-plus"></i>Register User
                         </button>
                       </fieldset>
                     </form>

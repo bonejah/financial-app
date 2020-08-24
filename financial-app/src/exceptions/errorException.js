@@ -1,5 +1,5 @@
-function ErroException(mensagens) {
-  this.mensagens = mensagens;
+function ErrorException(messages) {
+  this.messages = messages;
 }
 
-export default ErroException;
+export default ErrorException;

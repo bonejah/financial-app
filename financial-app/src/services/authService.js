@@ -1,6 +1,6 @@
 import LocalStorageService from "./localStorageService";
 
-export const USER_LOGGED = "_usuarioLogado";
+export const USER_LOGGED = "_userLogged";
 
 export default class AuthService {
 
@@ -10,7 +10,7 @@ export default class AuthService {
   }
 
   static removeUserAuthenticated() {
-    LocalStorageService.remmoveItem(USER_LOGGED);
+    LocalStorageService.removeItem(USER_LOGGED);
   }
 
   static login(user){

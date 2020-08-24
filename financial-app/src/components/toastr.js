@@ -27,7 +27,6 @@ export function warningMessage(message){
 }
 
 export function errorMessage(message){
-  console.log("message", message)
   showMessage("Error", message, "error")
 }
 

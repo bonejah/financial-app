@@ -2,7 +2,7 @@ import React from "react";
 
 import ProviderAuthentication from "./providerAuthentication";
 
-import Rotas from "../main/rotas";
+import Routes from "./routes";
 import NavBar from "../components/navbar";
 
 import "toastr/build/toastr.min.js";
@@ -17,16 +17,18 @@ import 'primeicons/primeicons.css';
  
 
 class App extends React.Component {
+
   render() {
     return (
       <ProviderAuthentication>
         <NavBar />
         <div className="container">
-          <Rotas />
+          <Routes />
         </div>
       </ProviderAuthentication>
     );
   }
+
 }
 
 export default App;

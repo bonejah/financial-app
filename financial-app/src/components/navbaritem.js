@@ -1,6 +1,7 @@
 import React from "react";
 
-function NavBarItem(render, ...props) {
+function NavBarItem({render, ...props}) {
+
   if (render) {
     return (
       <li className="nav-item">
@@ -10,6 +11,7 @@ function NavBarItem(render, ...props) {
   } else {
     return false;
   }
+  
 }
 
 export default NavBarItem;

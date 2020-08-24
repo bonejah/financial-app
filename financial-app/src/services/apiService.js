@@ -16,7 +16,6 @@ class ApiService {
 
   post(url, object) {
     const requestUrl = `${this.apiUrl}${url}`;
-    console.log("requestUrl", requestUrl)
     return httpClient.post(requestUrl, object);
   }
 
