@@ -4,7 +4,7 @@ const httpClient = axios.create({
   baseURL: "http://localhost:8084"
 });
 
-class ApiService {
+class ApiService {apiS
   constructor(apiUrl) {
     this.apiUrl = apiUrl;
   }
